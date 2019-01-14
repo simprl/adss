@@ -1,0 +1,44 @@
+{
+  "name": "adss",
+  "version": "1.0.0",
+  "description": "Action->Dispatch->Services->Store flow",
+  "main": "lib/adss.js",
+  "module": "es/adss.js",
+  "files": [
+    "lib",
+    "es",
+    "src"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "clean": "rimraf lib es",
+    "pretest": "npm run build",
+    "test": "jest",
+    "test:watch": "npm test -- --watch",
+    "test:cov": "npm test -- --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simprl/adss.git"
+  },
+  "keywords": [
+    "action",
+    "dispatch",
+    "services",
+    "store",
+    "flux",
+    "redux",
+    "react"
+  ],
+  "author": "simprl",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/simprl/adss/issues"
+  },
+  "homepage": "https://github.com/simprl/adss#readme",
+  "devDependencies": {
+    "jest": "^23.6.0",
+    "rimraf": "^2.6.2",
+    "rollup": "^1.1.0"
+  }
+}
