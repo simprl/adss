@@ -17,7 +17,7 @@ logic.getState()
 Or dispatch action:
 ```js
 const action = actions.action1(value1, value2) 
-logic.dispatch(action, onStateChangeCallback)
+logic.dispatch(action)
 ```
 Action is a function that call available services 
 ```js
@@ -54,18 +54,23 @@ const incMultValueOnce = (inc, mult) => ({ hold }) => {
 You can use callback if you want to change something each time when store changed
 ```js
 const onStateChangeCallback = (state) => conslole.log(state)
-logic.dispatch(actions.initValue(), onStateChangeCallback)
-// callback will call once
+logic.subscribe(onStateChangeCallback)
+
+logic.dispatch(actions.initValue())
+// callback call once
 
 
-logic.dispatch(actions.incMultValue(2,5), onStateChangeCallback)
-// callback will call twice
+logic.dispatch(actions.incMultValue(2,5))
+// callback call twice
 // because setState service will call twice
 
 
-logic.dispatch(actions.incMultValueOnce(2,5), onStateChangeCallback)
-// callback will call once
+logic.dispatch(actions.incMultValueOnce(2,5))
+// callback call once
 // because 'setState' service held by 'hold' service
+
+
+logic.unsubscribe(onStateChangeCallback)
 ```
 Callback will help if we need rerender something in view each time when state change
 

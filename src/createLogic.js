@@ -8,11 +8,19 @@ export function createLogic (initServices = services, _servicesFactories = servi
     getState: () => _state,
   }
 
+  let listeners = []
+
+  const fireStateChange = () => {
+    for(const onchange of listeners) {
+      onchange(_state)
+    }
+  }
+
   return {
     getState: () => _state,
-    dispatch: (action, onStateChange) => {
+    dispatch: (action) => {
       const context = {
-        onStateChange,
+        fireStateChange,
         getState: () => _state,
         setState: (state) => {
           _state = state
@@ -27,6 +35,12 @@ export function createLogic (initServices = services, _servicesFactories = servi
       }
 
       return action(services)
+    },
+    subscribe: (listener) => {
+      listeners.push(listener)
+    },
+    unsubscribe: (listener) => {
+      listener = listeners.filter((item) => item !== listener)
     },
   }
 }

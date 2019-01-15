@@ -5,19 +5,19 @@ export const setState = (services, dispatchContext) => (reducer) => {
   const newState = reducer(dispatchContext.getState())
   if(prevState !== newState) {
     dispatchContext.setState(newState)
-    dispatchContext.onStateChange && dispatchContext.onStateChange(newState)
+    dispatchContext.fireStateChange && dispatchContext.fireStateChange(newState)
   }
 }
 
 export const hold = (services, dispatchContext) => {
-  const { onStateChange } = dispatchContext
-  if(onStateChange) {
+  const { fireStateChange } = dispatchContext
+  if(fireStateChange) {
     Object.assign(dispatchContext, {
       holdLevel: 0,
       changedInHold: false,
-      onStateChange: (state) => {
+      fireStateChange: () => {
         if(dispatchContext.holdLevel === 0) {
-          onStateChange(state)
+          fireStateChange()
         } else {
           dispatchContext.changedInHold = true
         }
@@ -29,7 +29,7 @@ export const hold = (services, dispatchContext) => {
       dispatchContext.holdLevel--
       if(dispatchContext.holdLevel === 0 && dispatchContext.changedInHold) {
         dispatchContext.changedInHold = false
-        onStateChange(dispatchContext.getState())
+        fireStateChange()
       }
     }
   } else {
