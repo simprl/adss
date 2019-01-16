@@ -1,8 +1,7 @@
 import * as services from './services'
 import * as servicesFactories from './servicesFactories'
 
-export function createLogic (initServices = services, _servicesFactories = servicesFactories) {
-  let _state = {}
+export function createLogic (_state = {}, initServices = services, _servicesFactories = servicesFactories) {
   initServices = {
     ...initServices,
     getState: () => _state,

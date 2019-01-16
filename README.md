@@ -89,7 +89,7 @@ const myServicesFactories = {
         return () => console.log(dispatchContext.myCounter, dispatchContext.getState())
     }
 }
-const logic = createLogic({}, myServices, myServicesFactories)
+const logic = createLogic(initialState, myServices, myServicesFactories)
 ```
 
 ## How to write actions
