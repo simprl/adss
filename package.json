@@ -1,6 +1,6 @@
 {
   "name": "adss",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Action->Dispatch->Services->Store flow",
   "main": "lib/adss.js",
   "module": "es/adss.js",
