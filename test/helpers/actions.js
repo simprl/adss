@@ -11,6 +11,12 @@ const increment = (value) => stateAction((state) => ({...state, value: state.val
 const decrement = (value) => stateAction((state) => ({...state, value: state.value - value }))
 
 const incdec = (value1, value2) => async ({hold, dispatch}) => {
+    dispatch(increment(value1))
+    await delay(1000)
+    dispatch(decrement(value2))
+}
+
+const incdecHolded = (value1, value2) => async ({hold, dispatch}) => {
     await hold(async ({dispatch}) => {
         dispatch(increment(value1))
         await delay(1000)
@@ -26,4 +32,5 @@ exports.init = init
 exports.increment = increment
 exports.decrement = decrement
 exports.incdec = incdec
+exports.incdecHolded = incdecHolded
 exports.setV2 = setV2
