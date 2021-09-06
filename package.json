@@ -37,8 +37,8 @@
   },
   "homepage": "https://github.com/simprl/adss#readme",
   "devDependencies": {
-    "jest": "^23.6.0",
-    "rimraf": "^2.6.2",
-    "rollup": "^1.1.0"
+    "jest": "^27.1.0",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.56.3"
   }
 }
